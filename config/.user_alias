@@ -38,5 +38,4 @@ alias ls=lsd
 alias open='xdg-open'
 alias pn=pnpm
 # alias v='fd --type d --hidden --exclude .git --exclude build --exclude node_modules -d 2 | fzf  --reverse | xargs nvim'
-alias tn="tmux new -s (pwd | sed 's/.*\///g')"
 

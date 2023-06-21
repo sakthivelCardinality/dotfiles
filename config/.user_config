@@ -77,6 +77,11 @@ function mkcd(){
 	mkdir -p $1 && cd $1
 }
 
+function tx(){
+  (pwd | awk -F / -v OFS=_ '{ print $(NF-1), $NF }') | read a;
+  tmux new-session -s $a
+}
+
 if [ $SHELL = '/bin/bash' ]; then
 		# First need to install fzf in the root folder
 		# git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
