@@ -1,0 +1,42 @@
+
+# ----------------------
+# Git Aliases
+# ----------------------
+alias ga='git add'
+alias gaa='git add .'
+alias gaaa='git add -A'
+alias gc='git commit'
+alias gca='git commit --amend'
+alias gcm='git commit -m'
+alias gclo='git clone'
+alias gd='git diff'
+alias gi='git init'
+alias gl='git log'
+alias gp='git pull'
+alias gpsh='git push'
+alias gf='git fetch'
+alias gss='git status'
+alias gcko='git checkout'
+alias gcln='git clean -fd'
+alias gm='git merge'
+alias gst='git stash'
+
+
+# ---------------------
+# User aliases
+# ---------------------
+alias gitconfig="nvim ~/.gitconfig"
+alias zshconfig="nvim ~/.zshrc"
+alias userconfig="nvim ~/.user_config"
+alias useralias="nvim ~/.user_alias"
+alias installconfig="nano ~/Documents/dot-source-files/install/install.sh"
+alias xclip="xclip -selection clipboard"
+alias yt="youtube-dl --add-metadata -ic"
+alias yta="youtube-dl --add-metadata --audio-format mp3 -icx"
+alias catc="pygmentize -g"
+alias ls=lsd
+alias open='xdg-open'
+alias pn=pnpm
+# alias v='fd --type d --hidden --exclude .git --exclude build --exclude node_modules -d 2 | fzf  --reverse | xargs nvim'
+alias tn="tmux new -s (pwd | sed 's/.*\///g')"
+
