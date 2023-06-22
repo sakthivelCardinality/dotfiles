@@ -2,8 +2,8 @@
 # ----------------------
 # User Config
 # ----------------------
-export HISTSIZE=5000
-export HISTFILESIZE=10000
+export HISTSIZE=50000
+export HISTFILESIZE=1000000
 export HISTIGNORE='*sudo -S*'
 
 export PATH=$PATH:$HOME/bin
@@ -77,10 +77,60 @@ function mkcd(){
 	mkdir -p $1 && cd $1
 }
 
-function tx(){
-  (pwd | awk -F / -v OFS=_ '{ print $(NF-1), $NF }') | read a;
-  tmux new-session -s $a
+if [ -f ~/.tmux.conf ]; then
+
+get_sessions_by_mru() {
+	tmux list-sessions -F '#{session_last_attached} #{session_name}' | sort --numeric-sort --reverse | awk '{print $2}'
 }
+
+function tx(){
+  
+  TMUX_STATUS=$?
+  if [[ $1 != '' ]] ; then 
+    RESULT=$1;
+    (echo $1 | awk -F / -v OFS=_ '{ print $(NF-1), $NF }') | read SESSION_NAME
+  else
+    RESULT=$(pwd);
+    (pwd | awk -F / -v OFS=_ '{ print $(NF-1), $NF }') | read SESSION_NAME
+  fi
+  
+if [ $TMUX_STATUS -eq 0 ]; then                                 # tmux is running
+	SESSION=$(tmux list-sessions -F '#S' | grep "^$SESSION_NAME$") # find existing session
+else
+	SESSION=""
+fi
+
+if [ "$TMUX" = "" ]; then                          # not currently in tmux
+	if [ "$SESSION" = "" ]; then                      # session does not exist
+		tmux new-session -s "$SESSION_NAME" -c "$RESULT" # create session and attach
+	else                                              # session exists
+		tmux attach-session -t "$SESSION"                        # attach to session
+	fi
+else                                                  # currently in tmux
+	if [ "$SESSION" = "" ]; then                         # session does not exist
+		tmux new-session -d -s "$SESSION_NAME" -c "$RESULT" # create session
+		tmux switch-client -t "$SESSION_NAME"               # attach to session
+	else                                                 # session exists
+		tmux switch-client -t "$SESSION"                    # switch to session
+	fi
+fi
+
+}
+
+function txs(){
+  
+  TMUX_STATUS=$?
+  SESSION_NAME=$1
+
+if [ "$TMUX" = "" ]; then                          # not currently in tmux
+  tmux attach-session -t "$SESSION_NAME"                        # attach to session
+else                                                  # currently in tmux
+  tmux switch-client -t "$SESSION_NAME"                    # switch to session
+fi
+
+}
+
+fi
 
 if [ $SHELL = '/bin/bash' ]; then
 		# First need to install fzf in the root folder

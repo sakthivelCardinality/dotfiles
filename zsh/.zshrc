@@ -167,12 +167,10 @@ export MANPATH=$HOME/local/share/man:$MANPATH
 eval "$(zoxide init zsh)"
 
 
-if [ -f ~/.user_alias ]; then
-	source ~/.user_alias
-fi
-
 if [ -f  ~/.user_config ]; then
-        source ~/.user_config
+  source ~/.user_config
 fi
 
-# export PATH="~/dotfiles/bin/tmux/:$PATH"
+if [ -f ~/.user_alias ]; then
+  source ~/.user_alias
+fi
