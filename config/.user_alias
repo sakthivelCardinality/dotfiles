@@ -25,6 +25,8 @@ alias gst='git stash'
 # ---------------------
 # User aliases
 # ---------------------
+alias n=nvim
+alias vim=nvim
 alias gitconfig="nvim ~/.gitconfig"
 alias zshconfig="nvim ~/.zshrc"
 alias userconfig="nvim ~/.user_config"
