@@ -15,7 +15,9 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -128,7 +130,6 @@ export BUN_INSTALL="/home/sakthivel/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
-
 
 export PATH="/var/www/html/aws_cli:$PATH"
 
