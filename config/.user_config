@@ -48,7 +48,7 @@ function autoremove(){
 
 # cd and ls in single command
 function cd(){
-  builtin cd "$@" &&  ls -A
+  builtin cd "$@" &&  lsd -A
   pythonEnvCheck
 }
 
