@@ -77,6 +77,10 @@ function mkcd(){
 	mkdir -p $1 && cd $1
 }
 
+function video_format(){
+	ffmpeg -i "$@" -map 0 -c copy "$@".mkv && rm -rf "$@"
+}
+
 if [ -f ~/.tmux.conf ]; then
 
 get_sessions_by_mru() {
