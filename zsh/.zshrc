@@ -175,3 +175,8 @@ fi
 if [ -f ~/.user_alias ]; then
   source ~/.user_alias
 fi
+
+# add this to not load windows config in wsl
+# sudo vim /etc/wsl.conf
+# Add this lines.
+# [interop] appendWindowsPath = false
