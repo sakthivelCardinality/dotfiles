@@ -180,3 +180,5 @@ fi
 # sudo vim /etc/wsl.conf
 # Add this lines.
 # [interop] appendWindowsPath = false
+
+eval "$(starship init zsh)"
