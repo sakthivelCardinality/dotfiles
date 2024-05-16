@@ -181,4 +181,3 @@ fi
 # Add this lines.
 # [interop] appendWindowsPath = false
 
-eval "$(starship init zsh)"

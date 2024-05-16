@@ -88,16 +88,16 @@ get_sessions_by_mru() {
 }
 
 function tx(){
-  
+
   TMUX_STATUS=$?
-  if [[ $1 != '' ]] ; then 
+  if [[ $1 != '' ]] ; then
     RESULT=$1;
     (echo $1 | awk -F / -v OFS=_ '{ print $(NF-1), $NF }') | read SESSION_NAME
   else
     RESULT=$(pwd);
     (pwd | awk -F / -v OFS=_ '{ print $(NF-1), $NF }') | read SESSION_NAME
   fi
-  
+
 if [ $TMUX_STATUS -eq 0 ]; then                                 # tmux is running
 	SESSION=$(tmux list-sessions -F '#S' | grep "^$SESSION_NAME$") # find existing session
 else
@@ -122,7 +122,7 @@ fi
 }
 
 function txs(){
-  
+
   TMUX_STATUS=$?
   SESSION_NAME=$1
 
@@ -144,10 +144,10 @@ if [ $SHELL = '/bin/bash' ]; then
 		export FZF_DEFAULT_OPS="--extended"
 		export FZF_DEFAULT_COMMAND='fdfind --type f --hidden --follow --exclude .git'
 		export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-		
+
 		bind '"\e[A": history-search-backward'
 		bind '"\e[B": history-search-forward'
-		
+
 		# Direnv setup
 		# create a file `.envrc` to any folder to activate the direnv
 		# give permission `direnv allow .`
@@ -200,11 +200,24 @@ if [ $SHELL = '/bin/bash' ]; then
 
 fi
 
-if [ $SHELL = '/usr/bin/zsh' ]; then	
+if [ $SHELL = '/usr/bin/zsh' ]; then
 		export FZF_DEFAULT_OPS="--extended"
 		export FZF_DEFAULT_COMMAND='fdfind --type f --hidden --follow --exclude .git --exclude node_modules'
 		export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-		
+		export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
+
+		# Use fd (https://github.com/sharkdp/fd) for listing path candidates.
+    # - The first argument to the function ($1) is the base path to start traversal
+    # - See the source code (completion.{bash,zsh}) for the details.
+    _fzf_compgen_path() {
+      fd --hidden --follow --exclude ".git" . "$1"
+    }
+
+    # Use fd to generate the list for directory completion
+    _fzf_compgen_dir() {
+      fd --type d --hidden --follow --exclude ".git" . "$1"
+    }
+
 		# Direnv setup
 		# create a file `.envrc` to any folder to activate the direnv
 		# give permission `direnv allow .`
@@ -233,9 +246,9 @@ if [ $SHELL = '/usr/bin/zsh' ]; then
 		load-nvmrc
 
 		zle_highlight+=(paste:none)
-		
+
 		### Fix slowness of pastes with zsh-syntax-highlighting.zsh
-		
+
 		pasteinit() {
 		  OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
 		  zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
@@ -246,18 +259,18 @@ if [ $SHELL = '/usr/bin/zsh' ]; then
 		}
 		zstyle :bracketed-paste-magic paste-init pasteinit
 		zstyle :bracketed-paste-magic paste-finish pastefinish
-		
+
 		### Fix slowness of pastes
 
 		### Fix slowness of git
-		
-		__git_files () { 
-    	_wanted files expl 'local files' _files  
+
+		__git_files () {
+    	_wanted files expl 'local files' _files
     }
-		
+
 		### Fix slowness of git
 
-		# Only for windows wsl to duplicate tab 
+		# Only for windows wsl to duplicate tab
 		precmd(){
 			printf "\e]9;9;%s\e\\" "$PWD"
 		}
