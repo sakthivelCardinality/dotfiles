@@ -40,3 +40,6 @@ alias pn=pnpm
 alias fdd='fd --type d -d 2 --hidden --exclude .git --exclude build --exclude node_modules --exclude .local . "/var/www/html" | fzf-tmux -p --reverse | read fdvalue; cd "$fdvalue" '
 alias to='fd --type d -d 2 --hidden --exclude .git --exclude build --exclude node_modules --exclude .local . "/var/www/html" | fzf-tmux -p --reverse | read fdvalue; tx "$fdvalue" '
 alias ts='get_sessions_by_mru | fzf-tmux -p --reverse | read fdvalue; txs "$fdvalue" '
+
+alias ll="ls -ll"
+alias la="ls -lA"
