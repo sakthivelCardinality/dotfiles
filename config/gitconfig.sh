@@ -13,6 +13,9 @@ echo "squash-all alias created for the git"
 # git squash-all -m "a brand new start"
 git config --global alias.squash-all '!f(){ git reset $(git commit-tree HEAD^{tree} "$@");};f'
 
+echo "git config --global push.autoSetupRemote true"
+git config --global push.autoSetupRemote true
+
 # echo "git config --global core.fsmonitor true"
 # git config --global core.fsmonitor true
 
