@@ -1,3 +1,5 @@
+# Add deno completions to search path
+if [[ ":$FPATH:" != *":/home/sakthivel/.zsh/completions:"* ]]; then export FPATH="/home/sakthivel/.zsh/completions:$FPATH"; fi
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -149,3 +151,4 @@ fi
 if [ -f ~/.user_alias ]; then
   source ~/.user_alias
 fi
+. "/home/sakthivel/.deno/env"
