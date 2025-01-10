@@ -152,3 +152,7 @@ if [ -f ~/.user_alias ]; then
   source ~/.user_alias
 fi
 . "/home/sakthivel/.deno/env"
+
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOROOT/bin
