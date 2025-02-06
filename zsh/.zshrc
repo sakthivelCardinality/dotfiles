@@ -156,3 +156,6 @@ fi
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin
+
+# bun completions
+[ -s "/home/sakthivel/.bun/_bun" ] && source "/home/sakthivel/.bun/_bun"
