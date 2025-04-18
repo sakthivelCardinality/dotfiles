@@ -117,12 +117,12 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Bun
-export BUN_INSTALL="/home/sakthivel/.bun"
+export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 export PATH="/var/www/html/aws_cli:$PATH"
 
-[ -s "/home/sakthivel/.jabba/jabba.sh" ] && source "/home/sakthivel/.jabba/jabba.sh"
+[ -s "$HOME/.jabba/jabba.sh" ] && source "$HOME/.jabba/jabba.sh"
 
 source /etc/profile.d/gradle.sh
 
@@ -130,10 +130,9 @@ M2_HOME='/opt/apache-maven-3.6.3'
 PATH="$M2_HOME/bin:$PATH"
 export PATH
 
-NVIM_PATH="/home/sakthivel/nvim-linux64"
+NVIM_PATH="$HOME/nvim-linux-x86_64"
 PATH="$NVIM_PATH/bin:$PATH"
 export PATH
-alias vim="nvim"
 
 # ~/.tmux/plugins
 # export PATH=$HOME/.tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
@@ -158,4 +157,14 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin
 
 # bun completions
-[ -s "/home/sakthivel/.bun/_bun" ] && source "/home/sakthivel/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+# pnpm
+export PNPM_HOME="$HOME/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# export NODE_OPTIONS="--max-old-space-size=(5 * 1024)"
