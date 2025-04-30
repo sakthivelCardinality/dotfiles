@@ -167,4 +167,3 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-# export NODE_OPTIONS="--max-old-space-size=(5 * 1024)"
