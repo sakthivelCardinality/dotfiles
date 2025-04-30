@@ -14,11 +14,14 @@ echo "squash-all alias created for the git"
 git config --global alias.squash-all '!f(){ git reset $(git commit-tree HEAD^{tree} "$@");};f'
 
 echo "git config --global push.autoSetupRemote true"
-echo "git config --global push.default current "
-echo "git config --global push.followTags true "
+echo "git config --global push.default current"
+echo "git config --global push.followTags true"
 git config --global push.autoSetupRemote true
 git config --global push.default current
 git config --global push.followTags true
+
+echo "git config --global init.defaultBranch main"
+git config --global init.defaultBranch main
 
 # echo "git config --global core.fsmonitor true"
 # git config --global core.fsmonitor true
