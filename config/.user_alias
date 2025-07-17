@@ -15,6 +15,7 @@ alias gl='git log'
 alias gp='git pull'
 alias gpsh='git push'
 alias gf='git fetch'
+alias gsh='git switch'
 alias gss='git status'
 alias gcko='git checkout'
 alias gcln='git clean -fd'
@@ -25,6 +26,9 @@ alias gcp='git cherry-pick'
 alias glg='git log --graph --oneline --decorate --color --pretty=format:"%C(cyan)%h%C(reset) - %C(white)%s%C(reset), %C(yellow)%an%C(reset) : %C(green)%ad%C(reset) %C(magenta)%d%C(reset)" --date=format:"%Y-%m-%d %I:%M:%S %p"'
 alias glm='git log --merges --pretty=format:"%C(cyan)%h%C(reset) - %C(white)%s%C(reset), %C(yellow)%an%C(reset) : %C(green)%cd%C(reset) %C(magenta)%d%C(reset)" --date=format-local:"%Y-%m-%d %I:%M:%S %p"'
 alias glc='git log --pretty=format:"%C(cyan)%h%C(reset) - %C(white)%s%C(reset), %C(yellow)%an%C(reset) : %C(green)%cd%C(reset) %C(magenta)%d%C(reset)" --date=format-local:"%Y-%m-%d %I:%M:%S %p"'
+alias glb='git log $(git merge-base development-p3 HEAD)..HEAD --no-merges \
+--pretty=format:"%C(cyan)%h%C(reset) - %C(white)%s%C(reset), %C(yellow)%an%C(reset) : %C(green)%cd%C(reset) %C(magenta)%d%C(reset)" \
+--date=format-local:"%Y-%m-%d %I:%M:%S %p"'
 
 
 # ---------------------
