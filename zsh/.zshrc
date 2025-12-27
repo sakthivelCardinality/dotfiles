@@ -1,12 +1,9 @@
+# Add deno completions to search path
+if [[ ":$FPATH:" != *":/home/cardinality/.zsh/completions:"* ]]; then export FPATH="/home/cardinality/.zsh/completions:$FPATH"; fi
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
 
-# Add deno completions to search path
-if [[ ":$FPATH:" != *":/home/sakthivel/.zsh/completions:"* ]]; then export FPATH="/home/sakthivel/.zsh/completions:$FPATH"; fi
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -117,25 +114,15 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+# source /etc/profile.d/gradle.sh
 
-export PATH="/var/www/html/aws_cli:$PATH"
-
-[ -s "$HOME/.jabba/jabba.sh" ] && source "$HOME/.jabba/jabba.sh"
-
-source /etc/profile.d/gradle.sh
-
-M2_HOME='/opt/apache-maven-3.6.3'
-PATH="$M2_HOME/bin:$PATH"
-export PATH
+# M2_HOME='/opt/apache-maven-3.6.3'
+# PATH="$M2_HOME/bin:$PATH"
+# export PATH
 
 NVIM_PATH="$HOME/nvim-linux-x86_64"
 PATH="$NVIM_PATH/bin:$PATH"
@@ -146,9 +133,9 @@ export PATH
 # ~/.config/tmux/plugins
 # export PATH=$HOME/.config/tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
 
-export PATH=$HOME/local/bin:$PATH
-export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
-export MANPATH=$HOME/local/share/man:$MANPATH
+# export PATH=$HOME/local/bin:$PATH
+# export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
+# export MANPATH=$HOME/local/share/man:$MANPATH
 
 if [ -f  ~/.user_config ]; then
   source ~/.user_config
@@ -157,20 +144,14 @@ fi
 if [ -f ~/.user_alias ]; then
   source ~/.user_alias
 fi
-. "/home/sakthivel/.deno/env"
 
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin
 
-# bun completions
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
-# pnpm
-export PNPM_HOME="$HOME/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
+. "/home/cardinality/.deno/env"
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+[ -s "/home/cardinality/.jabba/jabba.sh" ] && source "/home/cardinality/.jabba/jabba.sh"

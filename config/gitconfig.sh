@@ -23,6 +23,9 @@ git config --global push.followTags true
 echo "git config --global init.defaultBranch main"
 git config --global init.defaultBranch main
 
+echo "git config --global core.editor 'nvim'"
+git config --global core.editor "nvim"
+
 # echo "git config --global core.fsmonitor true"
 # git config --global core.fsmonitor true
 

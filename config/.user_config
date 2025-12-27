@@ -32,13 +32,8 @@ bindkey '^n' down-line-or-search
 
 export PATH=$PATH:$HOME/bin
 export PATH=$PATH:$HOME/.local/bin
-export PATH="$HOME/var/www/html/aws_cli:$PATH"
 
-# Go Path
-export GOPATH=/usr/local/go
-export PATH=$PATH:$GOPATH/bin
-
-source "$HOME/.cargo/env"
+# source "$HOME/.cargo/env"
 
 # Java Home
 # export JAVA_HOME="/usr/lib/jvm/jdk1.8.0_221"
