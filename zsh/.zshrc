@@ -155,3 +155,5 @@ export PATH=$PATH:$GOROOT/bin
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 [ -s "/home/cardinality/.jabba/jabba.sh" ] && source "/home/cardinality/.jabba/jabba.sh"
+
+export CHROME_BIN=/usr/bin/chromium-browser

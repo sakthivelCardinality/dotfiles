@@ -1,0 +1,113 @@
+
+oh-my-posh init pwsh --config ~/.mytheme.omp.json | Invoke-Expression
+if (Test-Path "C:\Users\USER\.jabba\jabba.ps1") { . "C:\Users\USER\.jabba\jabba.ps1" }
+
+
+# Import the Chocolatey Profile that contains the necessary code to enable
+# tab-completions to function for `choco`.
+# Be aware that if you are missing these lines from your profile, tab completion
+# for `choco` will not function.
+# See https://ch0.co/tab-completion for details.
+$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+if (Test-Path($ChocolateyProfile)) {
+  Import-Module "$ChocolateyProfile"
+}
+
+Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
+Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
+
+# --- Kill conflicting PowerShell aliases ---
+Remove-Item Alias:gi -Force -ErrorAction SilentlyContinue
+Remove-Item Alias:gl -Force -ErrorAction SilentlyContinue
+Remove-Item Alias:gc -Force -ErrorAction SilentlyContinue
+Remove-Item Alias:gm -Force -ErrorAction SilentlyContinue
+Remove-Item Alias:gp -Force -ErrorAction SilentlyContinue
+Remove-Item Alias:gcm -Force -ErrorAction SilentlyContinue
+
+Set-Alias pwd Get-Location
+Set-Alias cat Get-Content
+
+Set-Alias cl Clear-Host
+
+function la {
+    Get-ChildItem -Force |
+    Format-Table Mode, LastWriteTime, Length, Name -AutoSize
+}
+
+function ll {
+    Get-ChildItem |
+    Format-Table Mode, LastWriteTime, Length, Name -AutoSize
+}
+
+function listopenport {
+    Get-NetTCPConnection -State Listen |
+    ForEach-Object {
+        $p = Get-Process -Id $_.OwningProcess -ErrorAction SilentlyContinue
+        [PSCustomObject]@{
+            Address = $_.LocalAddress
+            Port    = $_.LocalPort
+            Process = $p.ProcessName
+            PID     = $_.OwningProcess
+        }
+    } |
+    Sort-Object Port
+}
+
+# ---- Git aliases (PowerShell) ----
+
+function ga   { git add @args }
+function gaa  { git add . }
+function gaaa { git add -A }
+
+function gc   { git commit @args }
+function gca  { git commit --amend @args }
+function gcm  { git commit -m @args }
+
+function gclo { git clone @args }
+
+function gd   { git diff @args }
+function gi   { git init @args }
+
+function gl   { git log @args }
+
+function gp   { git pull @args }
+function gpsh { git push @args }
+function gf   { git fetch @args }
+
+function gsh  { git switch @args }
+function gss  { git status @args }
+
+function gcko { git checkout @args }
+
+function gcln { git clean -fd }
+
+function gm   { git merge @args }
+
+function gst  { git stash @args }
+
+function gcp  { git cherry-pick @args }
+
+function glg {
+    git log --graph --oneline --decorate --color `
+    --pretty=format:"%C(cyan)%h%C(reset) - %C(white)%s%C(reset), %C(yellow)%an%C(reset) : %C(green)%ad%C(reset) %C(magenta)%d%C(reset)" `
+    --date=format:"%Y-%m-%d %I:%M:%S %p"
+}
+
+function glm {
+    git log --merges `
+    --pretty=format:"%C(cyan)%h%C(reset) - %C(white)%s%C(reset), %C(yellow)%an%C(reset) : %C(green)%cd%C(reset) %C(magenta)%d%C(reset)" `
+    --date=format-local:"%Y-%m-%d %I:%M:%S %p"
+}
+
+function glc {
+    git log `
+    --pretty=format:"%C(cyan)%h%C(reset) - %C(white)%s%C(reset), %C(yellow)%an%C(reset) : %C(green)%cd%C(reset) %C(magenta)%d%C(reset)" `
+    --date=format-local:"%Y-%m-%d %I:%M:%S %p"
+}
+
+function glb {
+    git log $(git merge-base development-p3 HEAD)..HEAD --no-merges `
+    --pretty=format:"%C(cyan)%h%C(reset) - %C(white)%s%C(reset), %C(yellow)%an%C(reset) : %C(green)%cd%C(reset) %C(magenta)%d%C(reset)" `
+    --date=format-local:"%Y-%m-%d %I:%M:%S %p"
+}
+
