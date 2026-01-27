@@ -21,6 +21,7 @@ alias gcko='git checkout'
 alias gcln='git clean -fd'
 alias gm='git merge'
 alias gst='git stash'
+alias gwt='git worktree'
 # alias glg='git log --graph --oneline --decorate --pretty=format:"%h - %s, %an : %ad" --date=format:"%Y-%m-%d %I:%M:%S %p"'
 alias gcp='git cherry-pick'
 alias glg='git log --graph --oneline --decorate --color --pretty=format:"%C(cyan)%h%C(reset) - %C(white)%s%C(reset), %C(yellow)%an%C(reset) : %C(green)%ad%C(reset) %C(magenta)%d%C(reset)" --date=format:"%Y-%m-%d %I:%M:%S %p"'
@@ -48,8 +49,6 @@ alias ls=lsd
 alias open='xdg-open'
 alias pn=pnpm
 alias fdd='fd --type d -d 2 --hidden --exclude .git --exclude build --exclude node_modules --exclude .local . "/var/www/html" | fzf-tmux -p --reverse | read fdvalue; cd "$fdvalue" '
-alias to='fd --type d -d 2 --hidden --exclude .git --exclude build --exclude node_modules --exclude .local . "/var/www/html" | fzf-tmux -p --reverse | read fdvalue; tx "$fdvalue" '
-alias ts='get_sessions_by_mru | fzf-tmux -p --reverse | read fdvalue; txs "$fdvalue" '
 alias cl='clear'
 
 alias l='ls -lah'

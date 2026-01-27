@@ -33,3 +33,6 @@ git config --global core.editor "nvim"
 # this will run cronjob in the project dir
 # which will run garbage collection in the background which will run at the time of git commint
 # git maintenance start
+
+# run this inside git bare repo to fetch all the remote branch
+# git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
