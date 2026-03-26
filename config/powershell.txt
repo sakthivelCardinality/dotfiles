@@ -66,6 +66,7 @@ function gcm  { git commit -m @args }
 function gclo { git clone @args }
 
 function gd   { git diff @args }
+function gds  { git diff --staged @args }
 function gi   { git init @args }
 
 function gl   { git log @args }
